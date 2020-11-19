@@ -10,7 +10,9 @@ const publicPath = path.join(__dirname, 'public');
 const app = express();
 //middlewares
 app.use(express.static(publicPath));
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 app.use((req, res, next) => {
   console.log('hi from middleware');
@@ -20,7 +22,6 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(publicPath, 'tour.html'));
 });
-
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 // 1) dev MIDDLEWARES
