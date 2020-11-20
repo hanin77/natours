@@ -1,4 +1,3 @@
-const dotenv = require('dotenv');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -25,7 +24,5 @@ app.get('/', (req, res) => {
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 // 1) dev MIDDLEWARES
-
-dotenv.config({ path: './config.env' });
 
 module.exports = app;
