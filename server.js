@@ -8,7 +8,8 @@ mongoose
   .connect(process.env.LOCALDATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: true
+    useFindAndModify: true,
+    useUnifiedTopology: true
   })
   .then(() => {
     console.log('DB connection successfull');
