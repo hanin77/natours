@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js",
-    "debug": "ndb server.js"
+    "start:prod": "set NODE_ENV=production && nodemon server.js",
+    "debug": "set NODE_ENV=production && ndb server.js"
   },
   "author": "Med Han",
   "license": "MIT",
