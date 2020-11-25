@@ -25,10 +25,11 @@ app.get('/', (req, res) => {
 });
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-//last route for non found route above
+
+//last route for all routes that does not exist
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
-//error handler middleware
+//error handler  it handles all error
 app.use(globalErrorHandler);
 module.exports = app;

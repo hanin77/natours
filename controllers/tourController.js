@@ -58,7 +58,6 @@ exports.deleteTour = catchAsync(async (req, res, next) => {
     data: null
   });
 });
-
 exports.createTour = catchAsync(async (req, res, next) => {
   const newTour = await Tour.create(req.body);
   res.status(201).json({
@@ -66,7 +65,6 @@ exports.createTour = catchAsync(async (req, res, next) => {
     data: { tour: newTour }
   });
 });
-
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = 5;
   req.query.sort = '-rating, price';

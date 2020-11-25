@@ -1,6 +1,10 @@
 const AppError = require('../utils/appError');
+
+/*
+MongoDB Errors handlers
+*/
 /**
- *@function it handles Mongodb CastError type
+ *@function  handleCastErrorDB Mongodb CastError type
  * @param {object} err
  * @return {object} new formated AppError object for client side
  */
@@ -20,6 +24,12 @@ const handleValidationErrorDB = err => {
   const message = `Invalid input data. ${errors.join('. ')}`;
   return new AppError(message, 400);
 };
+
+/**
+ *
+ * @param {object} err
+ * @param {object} res
+ */
 const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: err.status,
