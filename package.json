@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5",
     "morgan": "^1.9.1",
+    "nodemailer": "^6.1.1",
     "slugify": "^1.4.6",
     "validator": "^13.1.17"
   },
