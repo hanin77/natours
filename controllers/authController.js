@@ -13,6 +13,16 @@ const signToken = id => {
 };
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWt_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+
+    httpOnly: true // protect cookie from access or modification on client site
+  };
+  //the cookie will be used with https only
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  res.cookie('jwt', token, cookieOptions);
   // Remove password from output
   user.password = undefined;
 
@@ -43,7 +53,8 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   /*find user with email and password */
   const user = await User.findOne({ email }).select('+password');
-  //if paasword or email uncorrect throw error
+  //if password or email uncorrect throw error
+  console.log(user);
   if (!(await user.correctPassword(password, user.password)) || !user) {
     return next(new AppError('Incorrect email or password', 401));
   }
