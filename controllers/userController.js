@@ -9,7 +9,7 @@ const filterObj = (obj, ...allowedFields) => {
       newObj[el] = obj[el];
     }
   });
-  console.log(newObj);
+
   return newObj;
 };
 
