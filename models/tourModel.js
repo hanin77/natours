@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 
+mongoose.set('debug', true);
 const tourSchema = new mongoose.Schema(
   {
     name: {
