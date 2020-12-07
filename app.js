@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/review', reviewRouter);
+app.use('/api/v1/reviews', reviewRouter);
 //last route for all routes that does not exist
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
