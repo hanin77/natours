@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 
-mongoose.set('debug', true);
+if (process.env.NODE_ENV === 'development') {
+  mongoose.set('debug', true);
+}
+
 const tourSchema = new mongoose.Schema(
   {
     name: {
@@ -116,6 +119,14 @@ const tourSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
+
+//virtual populate of a tour reviews
+tourSchema.virtual('reviews', {
+  ref: 'Review',
+  localField: '_id',
+  foreignField: 'tour'
+});
+
 tourSchema.virtual('durationWeeks').get(function() {
   return this.duration / 7;
 });
