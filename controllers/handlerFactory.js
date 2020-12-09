@@ -14,6 +14,7 @@ exports.deleteOne = Model => {
     });
   });
 };
+
 exports.updateOne = Model => {
   return catchAsync(async (req, res, next) => {
     const updatedDoc = await Model.findByIdAndUpdate(req.params.id, req.body, {
