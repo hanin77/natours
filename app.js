@@ -15,7 +15,11 @@ const globalErrorHandler = require('./controllers/errorController');
 const publicPath = path.join(__dirname, 'public');
 
 const app = express();
+app.set('view engine', 'Pug');
+app.set('views', path.join(__dirname, 'views'));
 //middlewares//
+app.use(express.static(publicPath));
+
 //set security headers
 app.use(helmet());
 //dev middlwares
@@ -47,7 +51,6 @@ app.use(
     ]
   })
 );
-app.use(express.static(publicPath));
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
@@ -59,8 +62,11 @@ app.use((req, res, next) => {
 // });
 //routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(publicPath, 'tour.html'));
+  res.status(200).render('base');
 });
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(publicPath, 'overview.html'));
+// });
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
