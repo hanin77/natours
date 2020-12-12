@@ -9,6 +9,7 @@ const path = require('path');
 const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const reviewRouter = require('./routes/reviewroutes');
+const viewRouter = require('./routes/viewRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -55,18 +56,10 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
-//test middlware
-// app.use((req, res, next) => {
-//   console.log('hi from middleware');
-//   next();
-// });
+
 //routes
-app.get('/', (req, res) => {
-  res.status(200).render('base');
-});
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(publicPath, 'overview.html'));
-// });
+
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
