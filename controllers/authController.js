@@ -99,6 +99,31 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
+//
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  //1 getting token
+  let token;
+  if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+
+    //2 verify token it compare the received signature with the generated signature using JWT_SECRET and decoded payload
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+    //3 Check if user still exist
+    const curentUser = await User.findById(decoded.id);
+    if (!curentUser) {
+      return next();
+    }
+    //4 check if user changed password after token was issued
+    if (curentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+    // there is a loggedin user
+    res.locals.user = curentUser;
+  }
+  next();
+});
+
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
