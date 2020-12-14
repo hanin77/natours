@@ -3,6 +3,8 @@ public/dist/bundle.js
 public/dist/bundle.js.map
 public/dist/styles.css
 public/dist/styles.css.map
+public/js/bundle.js
+public/js/bundle.js.map
 .cache/
 config.env
 yarn-error.log
