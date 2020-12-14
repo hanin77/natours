@@ -103,6 +103,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   // Grant access to the protected route
   req.user = curentUser;
+  res.locals.user = curentUser;
   next();
 });
 

@@ -33,7 +33,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   //we used findByIdAndUpate to avoid using save() wich will trigger validators
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
-    runValidator: true
+    runValidators: true
   });
 
   res.status(200).json({
