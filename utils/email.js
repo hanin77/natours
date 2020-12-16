@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
-const pug = require('pug');
 const htmlToText = require('html-to-text');
+const pug = require('pug');
 
 module.exports = class Email {
   constructor(user, url) {
@@ -13,7 +13,13 @@ module.exports = class Email {
   newTransport() {
     //production email version using sendgrid
     if (process.env.NODE_ENV === 'production') {
-      return 1;
+      return nodemailer.createTransport({
+        service: 'SendGrid',
+        auth: {
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD
+        }
+      });
     }
     //developement email version using nodemailer
     return nodemailer.createTransport({
@@ -40,10 +46,10 @@ module.exports = class Email {
       to: this.to,
       subject: subject,
       html: html,
-      text: htmlToText(html)
+      text: htmlToText.fromString(html)
     };
     //Actually send the email
-    await this.newTransport.sendMail(mailOptions);
+    await this.newTransport().sendMail(mailOptions);
   }
 
   async sendWelcome() {
