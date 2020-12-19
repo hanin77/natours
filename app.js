@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+
 const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const reviewRouter = require('./routes/reviewroutes');
@@ -25,6 +26,19 @@ app.use(express.static(publicPath));
 
 //set security headers
 app.use(helmet());
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//       'default-src': ["'self'"],
+//       'script-src': [
+//         "'self'",
+//         'https://js.stripe.com/v3/',
+//         'https://fonts.googleapis.com/'
+//       ]
+//     }
+//   })
+// );
 //dev middlwares
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -65,7 +79,6 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 //last route for all routes that does not exist
