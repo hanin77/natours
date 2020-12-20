@@ -7,15 +7,20 @@ const Review = require('../../models/reviewModel');
 
 dotenv.config({ path: './config.env' });
 
+//remote db connection
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+
 mongoose
-  .connect(process.env.LOCALDATABASE, {
+  .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true
   })
   .then(() => console.log('DB connection successful!'));
-
 // READ JSON FILE
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 const reviews = JSON.parse(
