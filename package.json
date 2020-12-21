@@ -10,7 +10,7 @@
     "start:prod": "set NODE_ENV=production && nodemon server.js",
     "debug": "set NODE_ENV=production && ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --no-cache"
   },
   "author": "Med Han",
   "license": "MIT",
