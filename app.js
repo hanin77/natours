@@ -20,7 +20,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const publicPath = path.join(__dirname, 'public');
 
 const app = express();
-app.set('view engine', 'Pug');
+app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 //middlewares//
 app.use(express.static(publicPath));
