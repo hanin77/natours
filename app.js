@@ -14,6 +14,7 @@ const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const reviewRouter = require('./routes/reviewroutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -58,6 +59,8 @@ const Limitter = rateLimit({
   message: 'Too many requests from this IP, please try again in a hour'
 });
 app.use('/api', Limitter);
+//stripe needs it as a stream (raw) not as json (before json middleware that parse the body to json)
+app.post('/webhook-checkout', express.raw, bookingController.webhookCheckout);
 //Body parser reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
