@@ -10,7 +10,7 @@ html
             link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' )
             script(type='text/javascript' src='https://js.stripe.com/v3/')
 
-    body
+    body(data-alert=`${alert ? alert: ''}`)
         // Header
         include _header
 
