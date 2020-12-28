@@ -32,7 +32,7 @@ body {
   font-weight: 300;
   font-family: 'Lato', sans-serif;
   color: #777;
-  padding: 3rem;
+  padding: 1rem;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,6 +41,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  justify-content: center;
 }
 
 .main {
@@ -171,10 +172,26 @@ body {
 }
 
 .heading-primary {
-  font-size: 5rem;
+  font-size: 4rem;
   text-align: center;
   width: 70%;
   margin: 0 auto;
+}
+@media only screen and (max-width: 1000px) {
+  .heading-primary {
+    font-size: 3rem;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .heading-primary {
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 530px) {
+  .heading-primary {
+    width: 100%;
+    font-size: 1.5rem;
+  }
 }
 
 .heading-tertirary {
@@ -413,6 +430,14 @@ body {
   align-items: center;
   text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
 }
+@media only screen and (max-width: 700px) {
+  .heading-box__detail {
+    font-size: 1rem;
+  }
+  .heading-box__group {
+    margin-top: 1.5rem;
+  }
+}
 .heading-box__detail svg {
   margin-right: 0.8rem;
 }
@@ -434,13 +459,16 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
+@media only screen and (max-width: 700px) {
+  .section-description {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
 .section-description > * {
   padding: 0 8vw;
   padding-top: 14vw;
   padding-bottom: calc(1vw + var(--section-rotate));
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
 }
 
 .description-box .description {
@@ -461,9 +489,25 @@ body {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  flex-direction: column;
+}
+@media only screen and (max-width: 700px) {
+  .overview-box {
+    flex-direction: row;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .overview-box {
+    flex-direction: column;
+  }
 }
 .overview-box__group:not(:last-child) {
   margin-bottom: 7rem;
+}
+@media only screen and (max-width: 700px) {
+  .overview-box__group {
+    padding-left: 2rem;
+  }
 }
 .overview-box__detail {
   font-size: 1.5rem;

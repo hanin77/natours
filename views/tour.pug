@@ -30,27 +30,25 @@ block content
                     span.heading-box__text= tour.startLocation.description
     section.section-description
         .overview-box
-            div
-                .overview-box__group
-                    h2.heading-secondary.ma-bt-lg= 'Quick facts'
-                    - const date= tour.startDates[0].toLocaleString('en-us',{month:'long', year:'numeric'});
-                    +overviewBox('Next date', date,'calendar')
-                    +overviewBox('Difficulty', tour.difficulty,'trending-up')
-                    +overviewBox('Participants', `${tour.maxGroupSize} people`,'user')
-                    +overviewBox('Rating', `${tour.ratingsAverage} / ${tour.ratingsQuantity}`,'star')  
-                |  
-                .overview-box__group
-                    h2.heading-secondary.ma-bt-lg Your tour guides
-                    
-                    each guide in tour.guides
-                        .overview-box__detail
-                            img.overview-box__img(src=`/img/users/${guide.photo}`, alt=`${guide.name}`)
-                            - if (guide.role === 'lead-guide')
-                                span.overview-box__label Lead guide
-                            - if (guide.role === 'guide')
-                                span.overview-box__label Tour guide
-                            span.overview-box__text= guide.name
-
+            .overview-box__group
+                h2.heading-secondary.ma-bt-lg= 'Quick facts'
+                - const date= tour.startDates[0].toLocaleString('en-us',{month:'long', year:'numeric'});
+                +overviewBox('Next date', date,'calendar')
+                +overviewBox('Difficulty', tour.difficulty,'trending-up')
+                +overviewBox('Participants', `${tour.maxGroupSize} people`,'user')
+                +overviewBox('Rating', `${tour.ratingsAverage} / ${tour.ratingsQuantity}`,'star')  
+            |  
+            .overview-box__group
+                h2.heading-secondary.ma-bt-lg Your tour guides
+                
+                each guide in tour.guides
+                    .overview-box__detail
+                        img.overview-box__img(src=`/img/users/${guide.photo}`, alt=`${guide.name}`)
+                        - if (guide.role === 'lead-guide')
+                            span.overview-box__label Lead guide
+                        - if (guide.role === 'guide')
+                            span.overview-box__label Tour guide
+                        span.overview-box__text= guide.name
         .description-box
             h2.heading-secondary.ma-bt-lg= 'About the park camper tour'
             - const paragraphs= tour.description.split('\n');
