@@ -16,7 +16,7 @@ const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
-
+//const DB = 'mongodb://localhost:27017/natours';
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
